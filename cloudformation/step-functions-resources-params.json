@@ -1,0 +1,18 @@
+[
+  {
+    "ParameterKey": "ArtifactBucketName",
+    "ParameterValue": "glue-etl-artifact"
+  },
+  {
+    "ParameterKey": "LambdaSourceS3Key",
+    "ParameterValue": "src/ons3objectcreated.zip"
+  },
+  {
+    "ParameterKey": "GlueRunnerActivityName",
+    "ParameterValue": "GlueRunnerActivity"
+  },
+  {
+    "ParameterKey": "DataBucketName",
+    "ParameterValue": "etl-datasets"
+  }
+]
