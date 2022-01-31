@@ -1,0 +1,18 @@
+[
+  {
+    "ParameterKey": "ArtifactBucketName",
+    "ParameterValue": "glue-etl-artifact"
+  },
+  {
+    "ParameterKey": "ETLScriptsPrefix",
+    "ParameterValue": "glue-scripts"
+  },
+  {
+    "ParameterKey": "DataBucketName",
+    "ParameterValue": "etl-datasets"
+  },
+  {
+    "ParameterKey": "ETLOutputPrefix",
+    "ParameterValue": "gluejobs-outputs-intermediate"
+  }
+]
