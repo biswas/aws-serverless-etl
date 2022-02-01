@@ -32,7 +32,7 @@ Parameters:
   #   Type: String
   #   Default: "AthenaRunnerActivity"
   #   Description: "Name of the AWS Step Functions activity to be polled by AthenaRunner."
-    # Amazon Athena is a serverless, interactive query service to query data and analyze big data in Amazon S3 using standard SQL.
+   # Amazon Athena is a serverless, interactive query service to query data and analyze big data in Amazon S3 using standard SQL.
 
   ArtifactBucketName:
     Type: String
@@ -58,12 +58,12 @@ Resources:
       AssumeRolePolicyDocument:
         Version: '2012-10-17'
         Statement:
-        - Effect: Allow
-          Principal:
-            Service:
-            - states.us-east-1.amazonaws.com
-          Action:
-          - sts:AssumeRole
+          - Effect: Allow
+            Principal:
+              Service:
+                - states.us-east-1.amazonaws.com
+            Action:
+              - sts:AssumeRole
       Policies:
         -
           PolicyName: "StatesExecutionPolicy"
@@ -98,9 +98,9 @@ Resources:
       Name: !Sub "${DataBucketName}-MarketingData_QuickSightSample.csv"
 
 
-  # State Machine resources
+# State Machine resources
 
-  # State machine for testing Athena Runner
+#  State machine for testing Athena Runner
   # AthenaRunnerTestETLOrchestrator:
   #   Type: "AWS::StepFunctions::StateMachine"
   #   Properties:
@@ -301,7 +301,8 @@ Resources:
         S3Key: !Ref LambdaSourceS3Key
       Timeout: 180 #seconds
       MemorySize: 128 #MB
-      Runtime: python2.7
+      #Runtime: python2.7
+      Runtime: python3.8
     DependsOn:
       - OnS3ObjectCreatedLambdaExecutionRole
 
