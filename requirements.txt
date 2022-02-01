@@ -1,0 +1,3 @@
+Pynt
+boto3
+botocore
