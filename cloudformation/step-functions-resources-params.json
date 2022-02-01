@@ -13,6 +13,6 @@
   },
   {
     "ParameterKey": "DataBucketName",
-    "ParameterValue": "etl-datasets"
+    "ParameterValue": "etl-datasets-2-1-2022"
   }
 ]
