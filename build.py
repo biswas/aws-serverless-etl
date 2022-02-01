@@ -29,6 +29,12 @@ def read_json(jsonf_path):
         json_text = jsonf.read()
         return json.loads(json_text)
 
+def read_yaml(yamlf_path):
+    '''Read a YAML file into a string.'''
+    with open(yamlf_path, 'r') as yamlf:
+        yaml_text = yamlf.read()
+        return yaml_text
+
 def check_bucket_exists(s3path):
     s3 = boto3.resource('s3')
 
@@ -170,9 +176,10 @@ def createstack(* stacks, **kwargs):
         cfn_params = read_json(cfn_params_path)
         stack_name = stack
 
-        cfn_file = open(cfn_path, 'r')
-        cfn_template = cfn_file.read(51200) #Maximum size of a cfn template
-
+        #cfn_file = open(cfn_path, 'r')
+        #cfn_template = cfn_file.read(51200) #Maximum size of a cfn template
+        cfn_template = read_yaml(cfn_path)
+        
         cfn_client = boto3.client('cloudformation')
 
         print("Attempting to CREATE '%s' stack using CloudFormation." % stack_name)
