@@ -1,7 +1,7 @@
 from __future__ import print_function
 
 import json
-import urllib
+import urllib.parse
 import boto3
 import logging, logging.config
 from botocore.client import Config
@@ -36,7 +36,7 @@ def handler(event, context):
 
     # Get the object from the event and show its content type
     bucket = event['Records'][0]['s3']['bucket']['name']
-    key = urllib.unquote_plus(event['Records'][0]['s3']['object']['key'].encode('utf8'))
+    key = urllib.parse.unquote_plus(event['Records'][0]['s3']['object']['key'].encode('utf8'))
 
     # Based on a naming convention that maps s3 keys to activity ARNs, deduce the activity arn
     sfn_activity_arn = map_activity_arn(bucket, key)
@@ -50,7 +50,8 @@ def handler(event, context):
             )
 
         except Exception as e:
-            logger.critical(e.message)
+            #logger.critical(e.message)
+            logger.critical(f"{e}")
             logger.critical(
                 'Unrecoverable error invoking get_activity_task for {}.'.format(sfn_activity_arn))
             raise
