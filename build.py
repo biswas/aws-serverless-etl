@@ -73,8 +73,8 @@ def packagelambda(* functions):
     os.chdir("build")
 
     if len(functions) == 0:
-        #functions = ("athenarunner", "gluerunner", "ons3objectcreated")
-        functions = ("gluerunner", "ons3objectcreated")
+        functions = ("athenarunner", "gluerunner", "ons3objectcreated")
+        #functions = ("gluerunner", "ons3objectcreated")
 
     for function in functions:
         print('Packaging "{}" lambda function in directory'.format(function))
@@ -95,8 +95,8 @@ def updatelambda(*functions):
     lambda_client = boto3.client('lambda')
 
     if len(functions) == 0:
-        #functions = ("athenarunner", "gluerunner", "ons3objectcreated")
-        functions = ("gluerunner", "ons3objectcreated")
+        functions = ("athenarunner", "gluerunner", "ons3objectcreated")
+        #functions = ("gluerunner", "ons3objectcreated")
 
     for function in functions:
         with open('build/%s.zip' % function, 'rb') as zipf:
@@ -112,8 +112,8 @@ def deploylambda(*functions, **kwargs):
     '''Upload lambda functions .zip file to S3 for download by CloudFormation stack during creation.'''
 
     if len(functions) == 0:
-        #functions = ("athenarunner", "gluerunner", "ons3objectcreated")
-        functions = ("gluerunner", "ons3objectcreated")
+        functions = ("athenarunner", "gluerunner", "ons3objectcreated")
+        #functions = ("gluerunner", "ons3objectcreated")
 
     region_name = boto3.session.Session().region_name
 
