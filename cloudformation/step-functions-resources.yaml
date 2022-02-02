@@ -28,7 +28,7 @@ Parameters:
     Default: "GlueRunnerActivity"
     Description: "Name of the AWS Step Functions activity to be polled by GlueRunner."
 
-  # AthenaRunnerActivityName:
+  AthenaRunnerActivityName:
     Type: String
     Default: "AthenaRunnerActivity"
     Description: "Name of the AWS Step Functions activity to be polled by AthenaRunner."
@@ -82,7 +82,7 @@ Resources:
     Properties:
       Name: !Ref GlueRunnerActivityName
 
-  # AthenaRunnerActivity:
+  AthenaRunnerActivity:
     Type: "AWS::StepFunctions::Activity"
     Properties:
       Name: !Ref AthenaRunnerActivityName
