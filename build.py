@@ -220,9 +220,10 @@ def updatestack(* stacks, **kwargs):
         cfn_path = "cloudformation/{}.yaml".format(stack)
         cfn_params_path = "cloudformation/{}-params.json".format(stack)
         cfn_params = read_json(cfn_params_path)
-
-        cfn_file = open(cfn_path, 'r')
-        cfn_template = cfn_file.read(51200) #Maximum size of a cfn template
+        
+        with open(cfn_path, 'r') as cfn_file:
+            #cfn_file = open(cfn_path, 'r')
+            cfn_template = cfn_file.read(51200) #Maximum size of a cfn template
 
         cfn_client = boto3.client('cloudformation')
 
