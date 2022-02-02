@@ -78,5 +78,5 @@ def handler(event, context):
 
 
     except Exception as e:
-        logger.critical(e)
+        logger.critical(f"{e}")
         raise e
