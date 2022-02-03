@@ -27,11 +27,8 @@ create_stack_glr:
 	
 create_stack_glrl:
 	pynt createstack["gluerunner-lambda"]
-	
-create_stack_arl:
-	pynt createstack["athenarunner-lambda"]
 
-create_stacks: create_stack_sfr create_stack_glr create_stack_glrl create_stack_arl
+create_stacks: create_stack_sfr create_stack_glr create_stack_glrl
 
 # build stacks which will stand ready to be triggered upon addition of objects to data s3
 build: package_lambda deploy_lambda deploy_gluescripts create_stacks
@@ -41,4 +38,3 @@ delete_stacks:
 	pynt deletestack["step-functions-resources"]
 	pynt deletestack["glue-resources"]
 	pynt deletestack["gluerunner-lambda"]
-	pynt deletestack["athenarunner-lambda"]

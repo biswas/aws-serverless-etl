@@ -1,8 +1,4 @@
 {
-  "athenarunner": {
-    "ArtifactBucketName": "glue-etl-artifact",
-    "LambdaSourceS3Key": "src/athenarunner.zip"
-  },
   "gluerunner": {
     "ArtifactBucketName": "glue-etl-artifact",
     "LambdaSourceS3Key": "src/gluerunner.zip"

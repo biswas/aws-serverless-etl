@@ -28,12 +28,6 @@ Parameters:
     Default: "GlueRunnerActivity"
     Description: "Name of the AWS Step Functions activity to be polled by GlueRunner."
 
-  AthenaRunnerActivityName:
-    Type: String
-    Default: "AthenaRunnerActivity"
-    Description: "Name of the AWS Step Functions activity to be polled by AthenaRunner."
-   # Amazon Athena is a serverless, interactive query service to query data and analyze big data in Amazon S3 using standard SQL.
-
   ArtifactBucketName:
     Type: String
     MinLength: "1"
@@ -82,11 +76,6 @@ Resources:
     Properties:
       Name: !Ref GlueRunnerActivityName
 
-  AthenaRunnerActivity:
-    Type: "AWS::StepFunctions::Activity"
-    Properties:
-      Name: !Ref AthenaRunnerActivityName
-
   WaitForSalesDataActivity:
     Type: "AWS::StepFunctions::Activity"
     Properties:
@@ -99,38 +88,6 @@ Resources:
 
 
 # State Machine resources
-
-#  State machine for testing Athena Runner
-  AthenaRunnerTestETLOrchestrator:
-    Type: "AWS::StepFunctions::StateMachine"
-    Properties:
-      StateMachineName: AthenaRunnerTestETLOrchestrator
-      DefinitionString:
-        Fn::Sub:
-          - |-
-            {
-              "StartAt": "Configure Athena Query",
-              "States": {
-                "Configure Athena Query":{
-                  "Type": "Pass",
-                  "Result": "{ \"AthenaQueryString\" : \"SELECT * FROM ${GlueTableName} limit 10;\", \"AthenaDatabase\": \"${GlueDatabaseName}\", \"AthenaResultOutputLocation\": \"${AthenaResultOutputLocation}\", \"AthenaResultEncryptionOption\": \"${AthenaResultEncryptionOption}\"}",
-                  "Next": "Execute Athena Query"
-                },
-                "Execute Athena Query":{
-                  "Type": "Task",
-                  "Resource": "${AthenaRunnerActivityArn}",
-                  "End": true
-                }
-              }
-            }
-          - {
-            GlueDatabaseName: !Ref MarketingAndSalesDatabaseName,
-            GlueTableName: !Ref MarketingTableName,
-            AthenaRunnerActivityArn: !Ref AthenaRunnerActivity,
-            AthenaResultOutputLocation: !Sub "s3://${DataBucketName}/athena-runner-output/",
-            AthenaResultEncryptionOption: "SSE_S3"
-          }
-      RoleArn: !GetAtt StateExecutionRole.Arn
 
   MarketingAndSalesETLOrchestrator:
     Type: "AWS::StepFunctions::StateMachine"
