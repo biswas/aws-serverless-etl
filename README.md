@@ -9,4 +9,4 @@
 5. To remove cloud resources after ETL run completion and backing up of any necessary outputs, first delete the data S3 bucket and then run `make delete_stacks`.
 
 ## References:
-    - <https://aws.amazon.com/blogs/big-data/orchestrate-multiple-etl-jobs-using-aws-step-functions-and-aws-lambda/>
+    - https://aws.amazon.com/blogs/big-data/orchestrate-multiple-etl-jobs-using-aws-step-functions-and-aws-lambda/
