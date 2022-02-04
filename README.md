@@ -1,4 +1,6 @@
 # Serverless ETL on AWS using Step Functions, Lambda, Glue, and CloudFormation
+ETL workflow to grab (two) datasets from an S3 bucket upon uploading, apply transformations to them separalely in parallel, and join the transformed versions after all the separate transformation processes complete. 
+![Step Functions DAG](https://github.com/biswas/aws-serverless-etl/blob/main/resources/stepfunctions_graph.png)
 
 ## Steps:
 1. Clone this repo into an environment with AWS CLI.
@@ -11,4 +13,4 @@
 
 ## References:
 - <https://aws.amazon.com/blogs/big-data/orchestrate-multiple-etl-jobs-using-aws-step-functions-and-aws-lambda/>
-- <https://github.com/aws-samples/aws-etl-orchestrator>: codes from the tutorial repo modified to exclude Athena and use python3.8 instead of 2.7
+- <https://github.com/aws-samples/aws-etl-orchestrator>: codes from the tutorial repo modified to exclude Athena and use python3.8 [instead of 2.7](https://aws.amazon.com/blogs/compute/announcing-end-of-support-for-python-2-7-in-aws-lambda/)
